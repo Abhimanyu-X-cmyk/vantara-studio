@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VANTARA STUDIO</title>
+
 <style>
 :root {
   --bg:#080812;
@@ -14,421 +15,1299 @@
   --cyan:#32d9ed;
   --text:#f5f3ff;
   --muted:#9693ad;
+  --line:#29243e;
 }
-*{box-sizing:border-box}
-body{
-  margin:0;background:var(--bg);color:var(--text);
+
+* {box-sizing:border-box}
+
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
   font-family:Arial,sans-serif;
 }
-button,input,select{font:inherit}
-button{cursor:pointer}
-header{
-  height:70px;padding:0 5%;display:flex;
-  align-items:center;justify-content:space-between;
-  border-bottom:1px solid #29243e;
-  position:sticky;top:0;background:#090913ed;
-  z-index:5;backdrop-filter:blur(15px);
+
+button,input,select,textarea {
+  font:inherit;
 }
-.logo{font-size:21px;font-weight:900;letter-spacing:2px}
-.logo span{color:var(--purple)}
-.header-right{color:var(--muted);font-size:12px}
-.page{display:none}
-.page.active{display:block}
-.hero{
-  min-height:650px;padding:75px 6%;
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:45px;align-items:center;
+
+button {cursor:pointer}
+
+header {
+  height:65px;
+  padding:0 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  background:#090913ed;
+  z-index:5;
+}
+
+.logo {
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.logo span,h1 span {color:var(--purple)}
+
+.header-right {
+  color:var(--muted);
+  font-size:11px;
+}
+
+.page {display:none}
+.page.active {display:block}
+
+.hero {
+  min-height:600px;
+  padding:65px 6%;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
   background:
-  radial-gradient(ellipse at 80% 45%,#49218b66,transparent 55%),
-  radial-gradient(ellipse at 10% 80%,#123b6540,transparent 45%);
+    radial-gradient(ellipse at 80% 45%,#49218b66,transparent 55%),
+    radial-gradient(ellipse at 10% 80%,#123b6540,transparent 45%);
 }
-.eyebrow{color:var(--cyan);letter-spacing:3px;font-size:12px}
-h1{font-size:clamp(38px,6vw,68px);line-height:1.08;margin:20px 0}
-h1 span{color:#a982ff}
-.hero p{color:var(--muted);line-height:1.8;max-width:520px}
-.primary{
-  border:0;border-radius:9px;padding:16px 25px;
-  color:white;font-weight:bold;
+
+.eyebrow {
+  color:var(--cyan);
+  letter-spacing:3px;
+  font-size:11px;
+}
+
+h1 {
+  font-size:clamp(38px,6vw,68px);
+  line-height:1.08;
+  margin:20px 0;
+}
+
+.hero p {
+  color:var(--muted);
+  line-height:1.8;
+  max-width:520px;
+}
+
+.primary,.secondary,.tool,.small {
+  border-radius:8px;
+  font-weight:bold;
+}
+
+.primary {
+  border:0;
+  padding:13px 20px;
+  color:white;
   background:linear-gradient(110deg,#7540ef,#a15bff);
-  box-shadow:0 5px 35px #8955ff45;
 }
-.secondary{
-  background:#1b1930;color:white;
-  border:1px solid #393052;border-radius:9px;
-  padding:13px 18px;
+
+.secondary {
+  background:#1b1930;
+  color:white;
+  border:1px solid #393052;
+  padding:11px 15px;
 }
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.mockup{
-  background:#11111f;border:1px solid #40345d;
-  padding:14px;border-radius:17px;
-  box-shadow:0 20px 80px #0009;
-  transform:perspective(1000px) rotateY(-5deg);
+
+.hero-actions,.actions {
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:20px;
 }
-.mock-top{display:flex;justify-content:space-between;
-  font-size:11px;color:var(--muted);padding:8px}
-.mock-screen{
-  height:260px;border-radius:10px;
+
+.mockup,.panel,.feature {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:15px;
+}
+
+.mock-screen {
+  height:240px;
+  border-radius:9px;
   background:
-  linear-gradient(0deg,#090918dd,transparent),
-  radial-gradient(circle at 55% 30%,#a47bff,#28204e 35%,#101322 75%);
-  display:flex;align-items:center;justify-content:center;
-  position:relative;overflow:hidden;
+    radial-gradient(circle at 55% 30%,#a47bff,#28204e 35%,#101322 75%);
+  display:grid;
+  place-items:center;
+  font-size:30px;
 }
-.mock-screen:before{
-  content:"";position:absolute;width:170px;height:170px;
-  border:1px solid #ffffff55;border-radius:50%;
-  box-shadow:0 0 65px #9d76ff;
+
+.features {
+  padding:55px 6%;
+  text-align:center;
 }
-.play{z-index:1;background:#ffffff24;padding:20px;
-  border:1px solid #ffffff66;border-radius:50%}
-.mock-bottom{display:grid;gap:8px;margin-top:13px}
-.mock-track{height:13px;border-radius:4px;
-  background:linear-gradient(90deg,#7143d9 0 35%,#24233b 35%)}
-.mock-track:nth-child(2){background:linear-gradient(90deg,#27aebd 0 60%,#24233b 60%)}
-.features{padding:65px 6%;text-align:center}
-.features h2{font-size:30px}
-.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);
-  gap:15px;margin-top:30px}
-.feature{
-  background:var(--panel);padding:24px;border:1px solid #29243e;
-  border-radius:13px;text-align:left
+
+.feature-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:25px;
 }
-.feature .symbol{font-size:26px}
-.feature p{color:var(--muted);font-size:13px;line-height:1.6}
-footer{text-align:center;padding:25px;color:var(--muted);
-  border-top:1px solid #252239;font-size:12px}
+
+.feature {text-align:left}
+
+.feature p,.status {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+}
+
+footer {
+  text-align:center;
+  padding:22px;
+  color:var(--muted);
+  font-size:11px;
+  border-top:1px solid var(--line);
+}
 
 /* EDITOR */
-.editor{padding:20px;max-width:1500px;margin:auto}
-.editor-heading{display:flex;justify-content:space-between;
-  align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:20px}
-.editor-heading h2{margin:0}
-.editor-layout{display:grid;grid-template-columns:245px 1fr;
-  gap:15px}
-.panel{background:var(--panel);border:1px solid #29243e;
-  border-radius:12px;padding:15px;min-width:0}
-.panel h3{font-size:14px;margin:0 0 16px}
-.tool{width:100%;padding:13px;margin:4px 0;
-  background:var(--panel2);color:white;border:1px solid #302b49;
-  border-radius:7px;text-align:left}
-.tool:hover{border-color:var(--purple)}
-.field{margin:14px 0}
-.field label{display:block;font-size:12px;color:var(--muted);
-  margin-bottom:8px}
-.field input,.field select{
-  width:100%;background:#090915;border:1px solid #39334f;
-  color:white;padding:11px;border-radius:7px;
+
+.editor {
+  padding:18px;
+  max-width:1600px;
+  margin:auto;
 }
-.workspace{display:grid;gap:15px;min-width:0}
-.preview{
-  min-height:310px;background:#05050b;border-radius:10px;
-  border:1px solid #302a48;display:flex;align-items:center;
-  justify-content:center;overflow:hidden;position:relative;
+
+.editor-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
 }
-.preview video{width:100%;max-height:440px;display:none}
-.preview-placeholder{text-align:center;color:var(--muted);padding:25px}
-.preview-placeholder strong{display:block;color:white;font-size:20px;
-  margin:12px}
-.preview-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
-.timeline{overflow-x:auto;padding-bottom:8px}
-.ruler{display:flex;justify-content:space-between;
-  min-width:500px;color:var(--muted);font-size:10px;padding:8px 0}
-.track{
-  min-width:500px;display:flex;align-items:center;gap:8px;
-  margin:8px 0;height:45px;background:#090915;
-  border:1px solid #29243e;border-radius:6px;padding:5px;
+
+.editor-heading h2 {margin:7px 0}
+
+.editor-layout {
+  display:grid;
+  grid-template-columns:270px minmax(0,1fr);
+  gap:14px;
 }
-.track-name{width:75px;flex-shrink:0;color:var(--muted);font-size:10px}
-.track-content{height:27px;flex:1;border-radius:4px;
-  background:#24223a;position:relative;overflow:hidden}
-.track-content.video-track{background:linear-gradient(90deg,#7146c9,#473078)}
-.track-content.audio-track{background:linear-gradient(90deg,#148d9c,#17505f)}
-.track-content.text-track{background:linear-gradient(90deg,#a36b28,#67441f)}
-.status{font-size:11px;color:var(--muted);line-height:1.7}
-.notice{background:#211a35;border:1px solid #49366d;
-  color:#d6c5ff;padding:12px;border-radius:8px;
-  font-size:12px;line-height:1.6;margin-top:14px}
-.hidden{display:none!important}
-@media(max-width:850px){
-  .hero{grid-template-columns:1fr;padding-top:55px}
-  .mockup{transform:none}
-  .feature-grid{grid-template-columns:1fr 1fr}
-  .editor-layout{grid-template-columns:1fr}
+
+.panel h3 {
+  font-size:13px;
+  margin:0 0 13px;
+  letter-spacing:.5px;
 }
-@media(max-width:520px){
-  header{padding:0 15px}
-  .logo{font-size:17px}
-  .header-right{font-size:10px}
-  .hero{padding:45px 20px}
-  .mock-screen{height:190px}
-  .feature-grid{grid-template-columns:1fr}
-  .editor{padding:12px}
+
+.workspace {
+  display:grid;
+  gap:13px;
+  min-width:0;
+}
+
+.tool {
+  width:100%;
+  padding:11px;
+  margin:4px 0;
+  background:var(--panel2);
+  color:white;
+  border:1px solid #302b49;
+  text-align:left;
+}
+
+.tool:hover,.secondary:hover {
+  border-color:var(--purple);
+}
+
+.field {margin:13px 0}
+
+.field label {
+  display:block;
+  font-size:11px;
+  color:var(--muted);
+  margin-bottom:7px;
+}
+
+.field input,.field select,.field textarea {
+  width:100%;
+  background:#090915;
+  border:1px solid #39334f;
+  color:white;
+  padding:10px;
+  border-radius:7px;
+}
+
+.field textarea {
+  min-height:150px;
+  resize:vertical;
+  line-height:1.5;
+}
+
+.preview {
+  min-height:260px;
+  background:#05050b;
+  border-radius:9px;
+  border:1px solid #302a48;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.preview video,.preview img {
+  width:100%;
+  max-height:480px;
+  object-fit:contain;
+}
+
+.preview audio {width:90%}
+
+.preview-placeholder {
+  text-align:center;
+  color:var(--muted);
+  padding:25px;
+}
+
+.preview-placeholder strong {
+  display:block;
+  color:white;
+  font-size:18px;
+  margin:10px;
+}
+
+.media-list {
+  display:grid;
+  gap:7px;
+  margin-top:10px;
+}
+
+.media-item,.clip {
+  background:#090915;
+  border:1px solid #302b49;
+  border-radius:7px;
+  padding:9px;
+  font-size:11px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+}
+
+.media-item span,.clip-name {
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.small {
+  font-size:10px;
+  padding:6px 8px;
+  background:#211a35;
+  color:white;
+  border:1px solid #49366d;
+}
+
+.timeline-wrap {overflow-x:auto}
+.timeline {min-width:650px}
+
+.ruler {
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:10px;
+  padding:7px 0 9px;
+}
+
+.track {
+  display:flex;
+  align-items:stretch;
+  gap:8px;
+  margin:7px 0;
+  min-height:54px;
+  background:#090915;
+  border:1px solid var(--line);
+  border-radius:6px;
+  padding:5px;
+}
+
+.track-name {
+  width:82px;
+  flex-shrink:0;
+  color:var(--muted);
+  font-size:10px;
+  display:flex;
+  align-items:center;
+}
+
+.track-lane {
+  display:flex;
+  align-items:center;
+  gap:5px;
+  flex:1;
+  min-width:0;
+  overflow-x:auto;
+}
+
+.clip {
+  min-width:105px;
+  max-width:180px;
+  justify-content:flex-start;
+  border-color:#7650c9;
+  background:#302052;
+  color:white;
+}
+
+.clip.audio {
+  background:#12444b;
+  border-color:#168b99;
+}
+
+.clip.image {
+  background:#51401e;
+  border-color:#a17a2c;
+}
+
+.clip.selected {outline:2px solid white}
+
+.notice {
+  background:#211a35;
+  border:1px solid #49366d;
+  color:#d6c5ff;
+  padding:11px;
+  border-radius:8px;
+  font-size:11px;
+  line-height:1.55;
+  margin-top:12px;
+}
+
+.status {margin:9px 0}
+
+.badge {
+  display:inline-block;
+  color:#b9a0ff;
+  background:#241b3c;
+  border-radius:20px;
+  padding:5px 9px;
+  font-size:10px;
+}
+
+.hidden {display:none!important}
+
+@media(max-width:850px) {
+  .hero {
+    grid-template-columns:1fr;
+    padding-top:45px;
+  }
+
+  .feature-grid {
+    grid-template-columns:1fr 1fr;
+  }
+
+  .editor-layout {
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:520px) {
+  header {padding:0 13px}
+  .logo {font-size:16px}
+  .header-right {font-size:9px}
+  .hero {padding:38px 18px}
+  .mock-screen {height:180px}
+  .feature-grid {grid-template-columns:1fr}
+  .editor {padding:10px}
+  .preview {min-height:190px}
 }
 </style>
 </head>
+
 <body>
 
 <header>
   <div class="logo">VANTARA <span>STUDIO</span></div>
-  <div class="header-right">INDEPENDENT VIDEO PRODUCTION</div>
+  <div class="header-right">
+    INDEPENDENT VIDEO PRODUCTION
+  </div>
 </header>
 
-<!-- LANDING PAGE -->
+<!-- HOME PAGE -->
+
 <main id="home" class="page active">
-  <section class="hero">
-    <div>
-      <div class="eyebrow">YOUR OWN AI VIDEO PRODUCTION STUDIO</div>
-      <h1>CREATE.<br>EDIT.<br><span>PRODUCE.</span></h1>
+
+<section class="hero">
+
+<div>
+  <div class="eyebrow">
+    YOUR VIDEO PRODUCTION WORKSPACE
+  </div>
+
+  <h1>CREATE.<br>EDIT.<br><span>PRODUCE.</span></h1>
+
+  <p>
+    Write a script, import your media, arrange clips
+    and prepare professional educational videos
+    in one workspace.
+  </p>
+
+  <div class="hero-actions">
+    <button class="primary" onclick="openEditor()">
+      OPEN VIDEO EDITOR →
+    </button>
+
+    <button class="secondary" onclick="openEditor()">
+      CREATE PROJECT
+    </button>
+  </div>
+</div>
+
+<div class="mockup">
+
+  <div style="display:flex;justify-content:space-between;
+  color:var(--muted);font-size:11px;padding:5px 2px 12px">
+
+    <span>VANTARA VIDEO WORKSPACE</span>
+    <span>1080P TARGET</span>
+
+  </div>
+
+  <div class="mock-screen">▶</div>
+
+  <p class="status">
+    Script · Media · Timeline · Export
+  </p>
+
+</div>
+</section>
+
+<section class="features">
+
+  <div class="eyebrow">PRODUCTION WORKSPACE</div>
+
+  <h2>One Studio for Your Videos</h2>
+
+  <div class="feature-grid">
+
+    <div class="feature">
+      <h3>Script Workspace</h3>
       <p>
-        A personal video production system for creating
-        professional, realistic educational videos.
-        Powered by our own developing AI technology.
+        Write or paste a complete teaching script
+        and plan your video length.
       </p>
-      <div class="hero-actions">
-        <button class="primary" onclick="openEditor()">
-          START EDITING →
-        </button>
-        <button class="secondary" onclick="openEditor()">
-          CREATE VIDEO
-        </button>
-      </div>
     </div>
 
-    <div class="mockup">
-      <div class="mock-top">
-        <span>VANTARA VIDEO WORKSPACE</span>
-        <span>1080P</span>
-      </div>
-      <div class="mock-screen">
-        <div class="play">▶</div>
-      </div>
-      <div class="mock-bottom">
-        <div class="mock-track"></div>
-        <div class="mock-track"></div>
-        <div class="mock-track"></div>
-      </div>
+    <div class="feature">
+      <h3>Multi-track Timeline</h3>
+      <p>
+        Arrange imported video, image and audio
+        assets in separate lanes.
+      </p>
     </div>
-  </section>
 
-  <section class="features">
-    <div class="eyebrow">OUR PRODUCTION SYSTEM</div>
-    <h2>Everything in One Studio</h2>
-    <div class="feature-grid">
-      <div class="feature">
-        <div class="symbol">✦</div>
-        <h3>AI Video Creation</h3>
-        <p>Our planned Script, Voice, Visual and Animation AI models.</p>
-      </div>
-      <div class="feature">
-        <div class="symbol">▣</div>
-        <h3>Advanced Editor</h3>
-        <p>Build videos using multiple tracks, media and scenes.</p>
-      </div>
-      <div class="feature">
-        <div class="symbol">◉</div>
-        <h3>1080p Production</h3>
-        <p>Our target export format for YouTube educational videos.</p>
-      </div>
+    <div class="feature">
+      <h3>Media Preview</h3>
+      <p>
+        Preview supported media files directly
+        in your browser.
+      </p>
     </div>
-  </section>
-  <footer>VANTARA STUDIO · OUR OWN VIDEO PRODUCTION TECHNOLOGY</footer>
+
+  </div>
+</section>
+
+<footer>
+  VANTARA STUDIO · DEVELOPMENT BUILD
+</footer>
+
 </main>
 
 <!-- EDITOR PAGE -->
+
 <main id="editor" class="page">
-  <div class="editor">
-    <div class="editor-heading">
-      <div>
-        <div class="eyebrow">VANTARA WORKSPACE</div>
-        <h2>Video Editor</h2>
-      </div>
-      <button class="secondary" onclick="goHome()">← Home</button>
-    </div>
 
-    <div class="editor-layout">
-      <aside class="panel">
-        <h3>PRODUCTION TOOLS</h3>
-        <button class="tool" onclick="document.getElementById('videoFile').click()">＋ Import Video</button>
-        <input id="videoFile" type="file" accept="video/*" hidden>
-        <button class="tool" onclick="document.getElementById('imageFile').click()">▧ Import Image</button>
-        <input id="imageFile" type="file" accept="image/*" hidden>
-        <button class="tool" onclick="document.getElementById('audioFile').click()">♫ Import Audio</button>
-        <input id="audioFile" type="file" accept="audio/*" hidden>
+<div class="editor">
 
-        <div class="field">
-          <label>PROJECT NAME</label>
-          <input id="projectName" value="My Educational Video">
-        </div>
+<div class="editor-heading">
 
-        <div class="field">
-          <label>VIDEO DURATION</label>
-          <select id="duration">
-            <option>45</option>
-            <option>46</option>
-            <option>47</option>
-            <option>48</option>
-            <option>49</option>
-            <option selected>50</option>
-            <option>51</option>
-            <option>52</option>
-            <option>53</option>
-            <option>54</option>
-            <option>55</option>
-          </select>
-        </div>
+  <div>
+    <div class="eyebrow">VANTARA WORKSPACE</div>
+    <h2>Video Editor</h2>
 
-        <div class="field">
-          <label>EXPORT RESOLUTION</label>
-          <select id="resolution">
-            <option selected>1920 × 1080 (Full HD)</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>VIDEO STYLE</label>
-          <select>
-            <option>Realistic educational</option>
-            <option>Documentary style</option>
-            <option>Professional classroom</option>
-            <option>Realistic science demonstration</option>
-          </select>
-        </div>
-
-        <div class="notice">
-          AI model integration and final rendering will be
-          added in later development milestones.
-        </div>
-      </aside>
-
-      <section class="workspace">
-        <div class="panel">
-          <h3>VIDEO PREVIEW</h3>
-          <div class="preview">
-            <video id="videoPreview" controls playsinline></video>
-            <div id="placeholder" class="preview-placeholder">
-              <div style="font-size:35px">▶</div>
-              <strong>Your video preview</strong>
-              Import a video to view it here.
-            </div>
-          </div>
-          <div class="preview-actions">
-            <button class="secondary" onclick="playVideo()">▶ Play</button>
-            <button class="secondary" onclick="pauseVideo()">Ⅱ Pause</button>
-            <button class="secondary" onclick="stopVideo()">■ Stop</button>
-          </div>
-          <p class="status" id="fileStatus">No video imported.</p>
-        </div>
-
-        <div class="panel">
-          <h3>EDITING TIMELINE</h3>
-          <div class="timeline">
-            <div class="ruler">
-              <span>00:00</span><span>10:00</span>
-              <span>20:00</span><span>30:00</span>
-              <span>40:00</span><span>50:00</span>
-            </div>
-            <div class="track">
-              <span class="track-name">VIDEO 1</span>
-              <div class="track-content video-track"></div>
-            </div>
-            <div class="track">
-              <span class="track-name">VIDEO 2</span>
-              <div class="track-content"></div>
-            </div>
-            <div class="track">
-              <span class="track-name">AUDIO</span>
-              <div class="track-content audio-track"></div>
-            </div>
-            <div class="track">
-              <span class="track-name">TEXT</span>
-              <div class="track-content text-track"></div>
-            </div>
-            <div class="track">
-              <span class="track-name">SUBTITLES</span>
-              <div class="track-content"></div>
-            </div>
-          </div>
-          <p class="status">
-            Timeline layout preview. Actual multi-track editing
-            and clip manipulation are under development.
-          </p>
-        </div>
-
-        <div class="panel">
-          <h3>PROJECT SETTINGS</h3>
-          <div class="field">
-            <label>MINIMUM VIDEO DURATION: 45 MINUTES</label>
-            <label>MAXIMUM VIDEO DURATION: 55 MINUTES</label>
-          </div>
-          <p class="status" id="durationStatus">
-            Selected target: 50 minutes.
-          </p>
-          <button class="primary" style="width:100%"
-            onclick="showExportMessage()">
-            EXPORT VIDEO
-          </button>
-          <p class="status" id="exportStatus">
-            Rendering engine is not connected yet.
-          </p>
-        </div>
-      </section>
-    </div>
+    <span class="badge">
+      MILESTONE 1 · LOCAL EDITING WORKSPACE
+    </span>
   </div>
+
+  <button class="secondary" onclick="goHome()">
+    ← Home
+  </button>
+
+</div>
+
+<div class="editor-layout">
+
+<!-- LEFT SIDEBAR -->
+
+<aside class="panel">
+
+<h3>PROJECT & MEDIA</h3>
+
+<div class="field">
+  <label>PROJECT NAME</label>
+  <input id="projectName" value="My Educational Video">
+</div>
+
+<div class="field">
+  <label>TARGET DURATION (1–55 MINUTES)</label>
+  <input id="duration" type="number" min="1" max="55" value="10">
+</div>
+
+<div class="field">
+  <label>EXPORT RESOLUTION TARGET</label>
+
+  <select id="resolution">
+    <option>1920 × 1080 (Full HD)</option>
+    <option>1280 × 720 (HD)</option>
+  </select>
+</div>
+
+<div class="field">
+  <label>VIDEO STYLE</label>
+
+  <select id="style">
+    <option>Realistic educational</option>
+    <option>Documentary style</option>
+    <option>Professional classroom</option>
+    <option>Realistic science demonstration</option>
+  </select>
+</div>
+
+<button class="tool" onclick="selectFiles('videoFiles')">
+  ＋ Import Video(s)
+</button>
+
+<input id="videoFiles" type="file" accept="video/*" multiple hidden>
+
+<button class="tool" onclick="selectFiles('imageFiles')">
+  ▧ Import Image(s)
+</button>
+
+<input id="imageFiles" type="file" accept="image/*" multiple hidden>
+
+<button class="tool" onclick="selectFiles('audioFiles')">
+  ♫ Import Audio(s)
+</button>
+
+<input id="audioFiles" type="file" accept="audio/*" multiple hidden>
+
+<p class="status" id="mediaStatus">
+  No media imported yet.
+</p>
+
+<h3 style="margin-top:18px">MEDIA BIN</h3>
+
+<div id="mediaList" class="media-list">
+  <p class="status">
+    Your imported files will appear here.
+  </p>
+</div>
+
+<div class="notice">
+  Files are currently kept in this browser session.
+  Permanent project storage is not connected yet.
+</div>
+
+</aside>
+
+
+<!-- MAIN WORKSPACE -->
+
+<section class="workspace">
+
+  <!-- VIDEO PREVIEW -->
+
+  <div class="panel">
+
+    <h3>VIDEO PREVIEW</h3>
+
+    <div class="preview" id="preview">
+
+      <div class="preview-placeholder">
+        <div style="font-size:35px">▶</div>
+        <strong>Your Preview</strong>
+        <span>Import and select media to preview it.</span>
+      </div>
+
+    </div>
+
+    <p class="status" id="previewStatus">
+      No media selected.
+    </p>
+
+  </div>
+
+  <!-- SCRIPT EDITOR -->
+
+  <div class="panel">
+
+    <h3>VANTARA SCRIPT WORKSPACE</h3>
+
+    <div class="field">
+
+      <label>VIDEO SCRIPT / NARRATION</label>
+
+      <textarea
+        id="scriptText"
+        placeholder="Write or paste your educational video script here..."
+      ></textarea>
+
+    </div>
+
+    <div class="actions">
+
+      <button class="secondary" onclick="countWords()">
+        Count Words
+      </button>
+
+      <button class="secondary" onclick="saveScript()">
+        Save Script
+      </button>
+
+      <button class="secondary" onclick="downloadScript()">
+        Download TXT
+      </button>
+
+    </div>
+
+    <p class="status" id="wordCount">
+      Words: 0
+    </p>
+
+  </div>
+
+  <!-- TIMELINE -->
+
+  <div class="panel">
+
+    <h3>MULTI-TRACK TIMELINE</h3>
+
+    <div class="actions">
+
+      <button class="primary" onclick="addToTimeline()">
+        + Add Selected Media
+      </button>
+
+      <button class="secondary" onclick="deleteClip()">
+        Delete Selected
+      </button>
+
+      <button class="secondary" onclick="splitClip()">
+        Split Clip
+      </button>
+
+      <button class="secondary" onclick="clearTimeline()">
+        Clear Timeline
+      </button>
+
+    </div>
+
+    <div class="timeline-wrap">
+
+      <div class="timeline">
+
+        <div class="ruler">
+          <span>00:00</span>
+          <span>00:10</span>
+          <span>00:20</span>
+          <span>00:30</span>
+          <span>00:40</span>
+          <span>00:50</span>
+        </div>
+
+        <div class="track">
+
+          <div class="track-name">VIDEO</div>
+
+          <div class="track-lane" id="videoTrack"></div>
+
+        </div>
+
+        <div class="track">
+
+          <div class="track-name">IMAGES</div>
+
+          <div class="track-lane" id="imageTrack"></div>
+
+        </div>
+
+        <div class="track">
+
+          <div class="track-name">AUDIO</div>
+
+          <div class="track-lane" id="audioTrack"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="notice">
+      Select a timeline clip to edit its start and end points.
+      These are editing markers; actual media cutting happens
+      during a future rendering stage.
+    </div>
+
+  </div>
+
+  <!-- CLIP CONTROLS -->
+
+  <div class="panel">
+
+    <h3>SELECTED CLIP CONTROLS</h3>
+
+    <p class="status" id="selectedClipName">
+      No timeline clip selected.
+    </p>
+
+    <div class="field">
+
+      <label>START TIME (SECONDS)</label>
+
+      <input
+        id="trimStart"
+        type="number"
+        min="0"
+        step="0.1"
+        value="0"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>END TIME (SECONDS)</label>
+
+      <input
+        id="trimEnd"
+        type="number"
+        min="0"
+        step="0.1"
+        value="10"
+      >
+
+    </div>
+
+    <div class="actions">
+
+      <button class="primary" onclick="applyTrim()">
+        Apply Edit Points
+      </button>
+
+      <button class="secondary" onclick="previewClip()">
+        Preview Clip
+      </button>
+
+    </div>
+
+    <p class="status" id="editStatus">
+      Select a clip to begin editing.
+    </p>
+
+  </div>
+
+  <!-- EXPORT -->
+
+  <div class="panel">
+
+    <h3>VIDEO EXPORT</h3>
+
+    <p class="status">
+      Target: 1080p Full HD
+    </p>
+
+    <button class="primary" style="width:100%"
+      onclick="exportVideo()">
+      EXPORT VIDEO
+    </button>
+
+    <div class="notice" id="exportStatus">
+      Export rendering is not connected yet.
+      A backend rendering engine is required to create
+      the final MP4 video.
+    </div>
+
+  </div>
+
+</section>
+
+</div>
 </main>
 
 <script>
-const home = document.getElementById("home");
-const editor = document.getElementById("editor");
 
-function openEditor(){
-  home.classList.remove("active");
-  editor.classList.add("active");
-  window.scrollTo(0,0);
-}
-function goHome(){
-  editor.classList.remove("active");
-  home.classList.add("active");
-  window.scrollTo(0,0);
+/* PAGE NAVIGATION */
+
+function openEditor() {
+  document.getElementById("home").classList.remove("active");
+  document.getElementById("editor").classList.add("active");
 }
 
-const video = document.getElementById("videoPreview");
-const placeholder = document.getElementById("placeholder");
-let currentVideoURL = null;
-
-document.getElementById("videoFile").addEventListener("change",function(){
-  const file=this.files[0];
-  if(!file)return;
-  if(currentVideoURL)URL.revokeObjectURL(currentVideoURL);
-  currentVideoURL=URL.createObjectURL(file);
-  video.src=currentVideoURL;
-  video.style.display="block";
-  placeholder.style.display="none";
-  document.getElementById("fileStatus").textContent=
-    "Loaded: "+file.name+" ("+(file.size/1024/1024).toFixed(2)+" MB)";
-});
-
-function playVideo(){video.play()}
-function pauseVideo(){video.pause()}
-function stopVideo(){video.pause();video.currentTime=0}
-
-document.getElementById("duration").addEventListener("change",function(){
-  document.getElementById("durationStatus").textContent=
-    "Selected target: "+this.value+" minutes.";
-});
-
-function showExportMessage(){
-  document.getElementById("exportStatus").textContent=
-    "Export is not available yet. Our video rendering engine must be built and connected first.";
+function goHome() {
+  document.getElementById("editor").classList.remove("active");
+  document.getElementById("home").classList.add("active");
 }
 
-document.getElementById("imageFile").addEventListener("change",function(){
-  if(this.files[0])alert("Image selected: "+this.files[0].name+
-  ". Image placement on the timeline is coming in the next editor milestone.");
-});
-document.getElementById("audioFile").addEventListener("change",function(){
-  if(this.files[0])alert("Audio selected: "+this.files[0].name+
-  ". Audio timeline editing is coming in the next editor milestone.");
-});
+/* FILE IMPORT */
+
+let mediaFiles = [];
+let selectedMedia = null;
+let timelineClips = [];
+let selectedClipId = null;
+
+function selectFiles(id) {
+  document.getElementById(id).click();
+}
+
+function setupFileInput(inputId, type) {
+
+  const input = document.getElementById(inputId);
+
+  input.addEventListener("change", function() {
+
+    const files = Array.from(this.files);
+
+    files.forEach(file => {
+
+      const url = URL.createObjectURL(file);
+
+      const media = {
+        id: Date.now() + Math.random(),
+        name: file.name,
+        type: type,
+        url: url,
+        duration: 10
+      };
+
+      mediaFiles.push(media);
+
+    });
+
+    renderMediaList();
+
+    document.getElementById("mediaStatus").textContent =
+      mediaFiles.length + " media file(s) imported.";
+
+    this.value = "";
+
+  });
+
+}
+
+setupFileInput("videoFiles", "video");
+setupFileInput("imageFiles", "image");
+setupFileInput("audioFiles", "audio");
+
+/* MEDIA BIN */
+
+function renderMediaList() {
+
+  const list = document.getElementById("mediaList");
+
+  list.innerHTML = "";
+
+  if (mediaFiles.length === 0) {
+    list.innerHTML = '<p class="status">No media imported.</p>';
+    return;
+  }
+
+  mediaFiles.forEach(media => {
+
+    const item = document.createElement("div");
+    item.className = "media-item";
+
+    const name = document.createElement("span");
+    name.textContent = media.name;
+
+    const button = document.createElement("button");
+    button.className = "small";
+    button.textContent = "Select";
+
+    button.onclick = () => selectMedia(media.id);
+
+    item.appendChild(name);
+    item.appendChild(button);
+
+    list.appendChild(item);
+
+  });
+
+}
+
+function selectMedia(id) {
+
+  selectedMedia = mediaFiles.find(m => m.id === id);
+
+  if (!selectedMedia) return;
+
+  showPreview(selectedMedia);
+
+  document.getElementById("previewStatus").textContent =
+    "Selected: " + selectedMedia.name;
+
+}
+
+/* PREVIEW */
+
+function showPreview(media) {
+
+  const preview = document.getElementById("preview");
+
+  preview.innerHTML = "";
+
+  let element;
+
+  if (media.type === "video") {
+
+    element = document.createElement("video");
+    element.src = media.url;
+    element.controls = true;
+    element.playsInline = true;
+
+  } else if (media.type === "image") {
+
+    element = document.createElement("img");
+    element.src = media.url;
+    element.alt = media.name;
+
+  } else {
+
+    element = document.createElement("audio");
+    element.src = media.url;
+    element.controls = true;
+
+  }
+
+  preview.appendChild(element);
+
+}
+
+/* TIMELINE */
+
+function addToTimeline() {
+
+  if (!selectedMedia) {
+    alert("Please import and select media first.");
+    return;
+  }
+
+  const clip = {
+    id: Date.now() + Math.random(),
+    mediaId: selectedMedia.id,
+    name: selectedMedia.name,
+    type: selectedMedia.type,
+    start: 0,
+    end: selectedMedia.duration
+  };
+
+  timelineClips.push(clip);
+
+  renderTimeline();
+
+}
+
+function renderTimeline() {
+
+  const tracks = {
+    video: document.getElementById("videoTrack"),
+    image: document.getElementById("imageTrack"),
+    audio: document.getElementById("audioTrack")
+  };
+
+  Object.values(tracks).forEach(track => {
+    track.innerHTML = "";
+  });
+
+  timelineClips.forEach(clip => {
+
+    const element = document.createElement("button");
+
+    element.className = "clip " + clip.type;
+
+    if (clip.id === selectedClipId) {
+      element.classList.add("selected");
+    }
+
+    element.textContent =
+      clip.name + " (" + clip.start + "–" + clip.end + "s)";
+
+    element.onclick = () => selectClip(clip.id);
+
+    tracks[clip.type].appendChild(element);
+
+  });
+
+}
+
+function selectClip(id) {
+
+  selectedClipId = id;
+
+  const clip = timelineClips.find(c => c.id === id);
+
+  if (!clip) return;
+
+  document.getElementById("selectedClipName").textContent =
+    "Selected: " + clip.name;
+
+  document.getElementById("trimStart").value = clip.start;
+  document.getElementById("trimEnd").value = clip.end;
+
+  document.getElementById("editStatus").textContent =
+    "Editing points loaded.";
+
+  renderTimeline();
+
+}
+
+/* CLIP EDITING */
+
+function getSelectedClip() {
+
+  return timelineClips.find(c => c.id === selectedClipId);
+
+}
+
+function applyTrim() {
+
+  const clip = getSelectedClip();
+
+  if (!clip) {
+    alert("Select a timeline clip first.");
+    return;
+  }
+
+  const start = Number(
+    document.getElementById("trimStart").value
+  );
+
+  const end = Number(
+    document.getElementById("trimEnd").value
+  );
+
+  if (
+    !Number.isFinite(start) ||
+    !Number.isFinite(end) ||
+    start < 0 ||
+    end <= start
+  ) {
+    alert("Please enter valid start and end times.");
+    return;
+  }
+
+  clip.start = start;
+  clip.end = end;
+
+  document.getElementById("editStatus").textContent =
+    "Editing points updated.";
+
+  renderTimeline();
+
+}
+
+function deleteClip() {
+
+  if (!selectedClipId) {
+    alert("Select a clip first.");
+    return;
+  }
+
+  timelineClips = timelineClips.filter(
+    clip => clip.id !== selectedClipId
+  );
+
+  selectedClipId = null;
+
+  document.getElementById("selectedClipName").textContent =
+    "No timeline clip selected.";
+
+  document.getElementById("editStatus").textContent =
+    "Clip deleted.";
+
+  renderTimeline();
+
+}
+
+function clearTimeline() {
+
+  if (!confirm("Clear all timeline clips?")) return;
+
+  timelineClips = [];
+  selectedClipId = null;
+
+  document.getElementById("selectedClipName").textContent =
+    "No timeline clip selected.";
+
+  document.getElementById("editStatus").textContent =
+    "Timeline cleared.";
+
+  renderTimeline();
+
+}
+
+/* SPLIT CLIP */
+
+function splitClip() {
+
+  const clip = getSelectedClip();
+
+  if (!clip) {
+    alert("Select a clip first.");
+    return;
+  }
+
+  const middle = (clip.start + clip.end) / 2;
+
+  if (middle <= clip.start || middle >= clip.end) {
+    alert("Clip is too short to split.");
+    return;
+  }
+
+  const secondClip = {
+    ...clip,
+    id: Date.now() + Math.random(),
+    start: middle
+  };
+
+  clip.end = middle;
+
+  timelineClips.push(secondClip);
+
+  selectedClipId = secondClip.id;
+
+  selectClip(secondClip.id);
+
+  document.getElementById("editStatus").textContent =
+    "Clip divided into two timeline segments.";
+
+}
+
+/* PREVIEW SELECTED CLIP */
+
+function previewClip() {
+
+  const clip = getSelectedClip();
+
+  if (!clip) {
+    alert("Select a clip first.");
+    return;
+  }
+
+  const media = mediaFiles.find(
+    m => m.id === clip.mediaId
+  );
+
+  if (!media) return;
+
+  showPreview(media);
+
+  document.getElementById("previewStatus").textContent =
+    "Previewing: " + clip.name;
+
+}
+
+/* SCRIPT WORKSPACE */
+
+function countWords() {
+
+  const text = document.getElementById("scriptText").value.trim();
+
+  const count = text
+    ? text.split(/\s+/).length
+    : 0;
+
+  document.getElementById("wordCount").textContent =
+    "Words: " + count;
+
+}
+
+document.getElementById("scriptText")
+  .addEventListener("input", countWords);
+
+function saveScript() {
+
+  const script = document.getElementById("scriptText").value;
+
+  try {
+
+    localStorage.setItem("vantaraStudioScript", script);
+
+    alert("Script saved in this browser.");
+
+  } catch (error) {
+
+    alert("Unable to save script in this browser.");
+
+  }
+
+}
+
+function downloadScript() {
+
+  const script = document.getElementById("scriptText").value;
+
+  if (!script.trim()) {
+    alert("Please write your script first.");
+    return;
+  }
+
+  const blob = new Blob([script], {
+    type: "text/plain"
+  });
+
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "Vantara-Studio-Script.txt";
+
+  link.click();
+
+  URL.revokeObjectURL(url);
+
+}
+
+/* RESTORE SCRIPT */
+
+try {
+
+  const savedScript = localStorage.getItem("vantaraStudioScript");
+
+  if (savedScript !== null) {
+
+    document.getElementById("scriptText").value = savedScript;
+
+    countWords();
+
+  }
+
+} catch (error) {
+
+  console.log("Script storage unavailable.");
+
+}
+
+/* EXPORT */
+
+function exportVideo() {
+
+  document.getElementById("exportStatus").textContent =
+    "Export is not available yet. The FFmpeg rendering backend " +
+    "must be connected before this studio can create a final MP4.";
+
+  alert(
+    "Your editing workspace is ready, but MP4 rendering " +
+    "has not been implemented yet."
+  );
+
+}
+
 </script>
+
 </body>
 </html>
